@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link rel="stylesheet" type="text/css" href="/home/ivanri/ivan/work/reset.css">
+		<link rel="stylesheet" type="text/css" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="css/estilos.css">
+
+		<meta charset="utf-8">
+		<title>ToDoList</title>
+	</head>
+	<body>
+		<nav class="container">
+			<div class="listaNav">
+				<h1><span class="ion-clipboard"></span>ToDoList</h1>
+				<span class="ion-android-more-vertical" id="borrarTodo"></span>
+			</div>
+		</nav>
+
+		<div class="container">
+			<div class="borrarTodo"> Borrar lista</div>			
+		</div>
+
+		<div class="container">
+			<span class="ion-plus-circled agregar_tarea" id="popup-open"></span>			
+		</div>
+
+		<div class="popup" id="popup">
+			<div class="popup_distribution">
+				<div>
+					<h3>Nueva tarea</h3>
+					<span class="ion-android-close close-popup" id="close-popup"></span>
+				</div>
+				<input type="text" name="titulo" id="titulo" placeholder="Titulo" class="inputs" required>
+				<span class="error-vacio" id="error-vacio"><span class="ion-android-arrow-dropup flecha-vacio"></span></span>
+				<textarea placeholder="Escriba la descripcion aqui" id="descripcion" class="inputs"></textarea>
+				<button class="btn_nuevatarea" id="btn_nuevatarea">Agregar</button>
+			</div>
+		</div>
+
+		<main class="container" id="main">
+		</main>
+
+		<script type="text/javascript" src="js/codigo.js"></script>
+	</body>
+</html>
