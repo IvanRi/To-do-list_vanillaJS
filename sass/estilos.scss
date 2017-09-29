@@ -3,13 +3,11 @@
 $color1: #E4572E;//naranja
 $color2: #F0F8EA;//blanco
 $color3: lightgrey;
-$colorBodyFont: grey;
 $colorBackTarea: #F0F66E;
 
 body{
 	position:relative;
 	font-family:"Roboto", sans-serif;
-	// color:$colorBodyFont;
 	nav{
 		color:$color2;
 		background-color: $color1;
@@ -28,28 +26,53 @@ body{
 			}
 			span{
 				margin-top: 10px;
+				margin-right:10px;
+				padding:5px;
 				font-size: 40px;
 				cursor: pointer;
+				@media (max-width:700px){
+					margin-right:0px;
+				}
 			}			
 		}
 	}
 
-	div{
+	.backOp{
+		padding:0;
 		position:relative;
-		.borrarTodo{
+		.menuDeOp{
 			display: none;
 			cursor: pointer;
-			text-transform: uppercase;
-			position:absolute;
-			right: 7%;
 			margin: 0;
-			padding:15px;
-			font-weight: 300;
+			padding:10px 20px;
 			z-index: 9;
 			font-size: 20px;
 			color:$color2;
-			border-radius:0px 0px 20px 20px;
-			background-color:#bf350f;
+			border-bottom:1px solid $color1;
+			justify-content: flex-end;
+			background-color:$color1;
+			@media(max-width:500px){
+					padding:5px;
+					justify-content: center;
+				}
+			.opcionesMenu{
+				padding:10px 25px;
+				background-color: #e24418;
+				margin: 0px 5px;
+				display: flex;
+				align-items:center;
+				span{
+					font-size: 25px;
+					margin-top: 5px;
+					margin-left: 5px;
+				}
+				@media(max-width:376px){
+					padding:10px;
+				}
+			}
+			.ordenarPor{
+				// display: none;
+			}
 		}		
 	}
 
@@ -68,7 +91,7 @@ body{
 			width: 600px;
 			display: flex;
 			flex-direction: column;
-			background-color:$color2;
+			background-color:white;
 			padding-bottom:30px;
 			div{
 				display: flex;
@@ -111,6 +134,11 @@ body{
 				border:none;
 				border-bottom:1px solid $color1;
 				resize: none;
+				font-size: 22px;
+				&:focus{
+					outline: none;
+					background-color: whitesmoke;
+				}
 			}
 			.btn_nuevatarea{
 				width: 40%;
@@ -128,7 +156,7 @@ body{
 
 	.agregar_tarea{
 		color:$color1;
-		font-size: 50px;
+		font-size: 60px;
 		cursor: pointer;
 		@media(max-width:700px){
 		position:fixed;
@@ -152,7 +180,7 @@ body{
 					div{
 						.completado{
 							position:absolute;
-							left:3px;
+							left:18px;
 							font-size: 27px;
 							color:$colorBackTarea;
 						}
@@ -167,6 +195,7 @@ body{
 				}
 				p{
 					margin-bottom: 0px;
+					margin-left: 35px;
 				}
 				.listaOp{
 					position:absolute;

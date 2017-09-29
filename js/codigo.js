@@ -20,13 +20,24 @@ function getLS(){
 
 		nuevoElemento.innerHTML= elementosParseados[x].html
 
-		main.appendChild(nuevoElemento)	
+		main.appendChild(nuevoElemento)
+
+		checkCompletado(x)
 	}
+	agregarAELel()
 	agregarAEL()
 
 	return elementosParseados
 }
+//CHECKEAR COMPLETADO
 
+function checkCompletado(x){
+		if(elementosParseados[x].completado == true){
+		document.getElementById(`c${elementosParseados[x].id}`).style.color ="black"
+		document.getElementById(`titulo${elementosParseados[x].id}`).style.textDecoration = "line-through"
+		document.getElementById(`id${elementosParseados[x].id}`).style.backgroundColor = "lightgrey"
+	}
+}
 //TRANFORMANDO DATOS EN STRING
 
 function setLS(nuevaTarea){
@@ -73,53 +84,60 @@ function generarTarea (){
 		document.getElementById('error-vacio').innerHTML =(`<span class="ion-android-arrow-dropup flecha-vacio"></span>Este campo es obligatorio.`)
 		document.getElementById('error-vacio').style.display = "inline-block"
 	}else if(sections.length == 0){
-
 		setLS(newTarea)
-
 		getLSElements()
-
-		document.getElementById('error-vacio').style.display = "none"
-
-		for (var i = 0; i < elementosParseados.length; i++) {
-
-			var nuevoElemento = document.createElement('section')
-
-			nuevoElemento.innerHTML= elementosParseados[i].html
-
-			main.appendChild(nuevoElemento)
-		}
-		agregarAEL()
-		popupClose()
-		resetValue()
+		crearTarea()
 	}else{
 		removeAll()
-
 		setLS(newTarea)
-
 		getLSElements()
-
-
-		document.getElementById('error-vacio').style.display = "none"
-
-		for (var i = 0; i < elementosParseados.length; i++) {
-
-			var nuevoElemento = document.createElement('section')
-
-			nuevoElemento.innerHTML= elementosParseados[i].html
-
-			main.appendChild(nuevoElemento)
-		}
-			agregarAEL()
-			popupClose()
-			resetValue()
+		crearTarea()
 	}
-
 }
+
+function crearTarea (){
+	document.getElementById('error-vacio').style.display = "none"
+
+	for (var i = 0; i < elementosParseados.length; i++) {
+
+		var nuevoElemento = document.createElement('section')
+
+		nuevoElemento.innerHTML= elementosParseados[i].html
+
+		main.appendChild(nuevoElemento)
+
+		checkCompletado(i)
+	}
+	agregarAELel()
+	agregarAEL()
+	popupClose()
+	resetValue()
+}
+
 //BORRAR DE A UNO
 
-// function removeOne(){
+function removeOne(e){
+	var completadoId = e.currentTarget.id
+	var aString = Number(completadoId.substring(2))
+	elementosParseados.splice(aString , 1)
+	for (var i = 0; i < idNuevo; i++){
+		if(elementosParseados[i]!=undefined){
+			if(elementosParseados[i].id==aString){
+				localStorage.removeItem(elementosParseados[i].id)
+				getLS()
+			}			
+		}
+	}
+}
 
-// }
+function agregarAELel(){
+	for (var i = 1; i < idNuevo; i++) {
+		var elC = document.getElementById(`el${i}`)
+		if(elC != null){
+			elC.addEventListener('click' , removeOne )
+		}
+	}
+}
 
 //INICIA LOCALSTORAGE CON IDNUEVO = 1
 
@@ -135,17 +153,18 @@ function setValue (){
 	var titulo = document.getElementById('titulo').value
 	var descripcion = document.getElementById('descripcion').value
 
-	var htmlNuevo = `<div class='nuevaTarea' id="id${idNuevo}">
+	var htmlNuevo = 
+	`<div class='nuevaTarea' id="id${idNuevo}">
 		<div>
 			<div>
 				<span class="ion-android-checkbox-outline-blank descompletado"></span>
-				<span class="ion-android-done completado"  id="c${idNuevo}" name="hola"></span>
+				<span class="ion-android-done completado"  id="c${idNuevo}"></span>
 			</div>
-			<h4>${titulo}</h4>
+			<h4 id="titulo${idNuevo}">${titulo}</h4>
 		</div>
 		<p class="p-tarea">${descripcion}</p>
 		<div class="listaOp">
-			<span class="ion-trash-a eliminarElemento" id="eliminarElemento${idNuevo}"></span>
+			<span class="ion-trash-a eliminarElemento" id="el${idNuevo}"></span>
 			<span class="ion-android-create editarElementos" id="editarElementos${idNuevo}"></span>
 		</div>
 	</div>`
@@ -176,10 +195,16 @@ function compleDescomple(e){
 		if(elementosParseados[i].id == aString){
 			if(elementosParseados[i].completado == false){
 				e.currentTarget.style.color ="black"
-				elementosParseados[i].completado = true		
+				document.getElementById(`titulo${aString}`).style.textDecoration = "line-through"
+				document.getElementById(`id${aString}`).style.backgroundColor = "lightgrey"
+				elementosParseados[i].completado = true
+				setLS(elementosParseados[i])
 			}else{
 				e.currentTarget.style.color ="#F0F66E"
+				document.getElementById(`titulo${aString}`).style.textDecoration = "none"
+				document.getElementById(`id${aString}`).style.backgroundColor = "#F0F66E"
 				elementosParseados[i].completado = false
+				setLS(elementosParseados[i])
 			}			
 		}
 	}
@@ -187,7 +212,7 @@ function compleDescomple(e){
 
 // DISPLAY OPCION BORRAR TODO
 
-var opBorrarTodo = document.getElementsByClassName('borrarTodo')[0]
+var opBorrarTodo = document.getElementsByClassName('menuDeOp')[0]
 
 document.getElementById('borrarTodo').addEventListener('click' , opSi)
 
@@ -195,7 +220,7 @@ var estadoOpBT = true
 
 function opSi(){
 	if(estadoOpBT == true){
-		opBorrarTodo.style.display="block"
+		opBorrarTodo.style.display="flex"
 		estadoOpBT = false
 	}else{
 		opBorrarTodo.style.display="none"
@@ -223,7 +248,6 @@ function removeAllBtn(){
 	for(var i = sections.length -1 ; i >= 0; i--){
 		main.removeChild(sections[i])
 	}
-
 	localStorage.clear()
 	localStorage.setItem(0 , 1)
 }
@@ -236,11 +260,8 @@ function Tarea (id , titulo , descripcion , html){
 	this.descripcion = descripcion
 	this.html = html
 	this.completado = false
-	function remover (){
-		localStorage.removeItem(this.id)
-	}
-
 }
+
 //RESETEAR CAMPOS
 
 function resetValue(){
