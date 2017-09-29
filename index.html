@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+		<meta name="theme-color" content="#E4572E" />
 		<link rel="stylesheet" type="text/css" href="/home/ivanri/ivan/work/reset.css">
 		<link rel="stylesheet" type="text/css" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
@@ -36,10 +36,23 @@
 					<h3>Nueva tarea</h3>
 					<span class="ion-android-close close-popup" id="close-popup"></span>
 				</div>
-				<input type="text" name="titulo" id="titulo" placeholder="Titulo" class="inputs" required>
+				<input type="text" maxlength="20" name="titulo" id="titulo" placeholder="Titulo" class="inputs" required>
 				<span class="error-vacio" id="error-vacio"><span class="ion-android-arrow-dropup flecha-vacio"></span></span>
-				<textarea placeholder="Escriba la descripcion aqui" id="descripcion" class="inputs"></textarea>
+				<textarea placeholder="Escriba la descripcion aqui" maxlength="50" id="descripcion" class="inputs"></textarea>
 				<button class="btn_nuevatarea" id="btn_nuevatarea">Agregar</button>
+			</div>
+		</div>
+
+		<div class="popupEdit" id="edicion">
+			<div class="popup_distribution">
+				<div>
+					<h3>Editar tarea</h3>
+					<span class="ion-android-close close-popup" id="close-popupEdit"></span>
+				</div>
+				<input type="text" maxlength="20" name="titulo" id="tituloEdit" placeholder="Titulo" class="inputs" required>
+				<span class="error-vacio" id="error-vacioEdit"><span class="ion-android-arrow-dropup flecha-vacio"></span></span>
+				<textarea placeholder="Escriba la descripcion aqui" maxlength="50" id="descripcionEdit" class="inputs"></textarea>
+				<button class="btn_nuevatarea" id="btn_nuevatareaEdit">Modificar</button>
 			</div>
 		</div>
 

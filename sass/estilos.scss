@@ -71,7 +71,7 @@ body{
 				}
 			}
 			.ordenarPor{
-				// display: none;
+				display: none;
 			}
 		}		
 	}
@@ -85,7 +85,7 @@ body{
 		display: none;
 		justify-content: center;
 		align-items:center;
-		background-color:rgba(0,0,0,0.3);
+		background-color:rgba(0,0,0,0.4);
 		.popup_distribution{
 			position:relative;
 			width: 600px;
@@ -98,6 +98,7 @@ body{
 				justify-content: space-between;
 				h3{
 					padding:20px;
+					padding-bottom: 5px;
 					font-size: 35px;
 					color:$color1;
 				}
@@ -105,8 +106,7 @@ body{
 					margin-right: 10px;
 					color:$color3;
 					font-size: 30px;
-				}
-				
+				}				
 			}
 			.error-vacio{
 				position:absolute;
@@ -125,7 +125,6 @@ body{
 					top:-23px;
 					left: 43%;
 				}
-
 			}
 			.inputs{
 				margin:25px;
@@ -141,19 +140,96 @@ body{
 				}
 			}
 			.btn_nuevatarea{
-				width: 40%;
+				width: 45%;
 				margin:auto;
 				background-color:$color1;
 				color:$color2;
 				border:none;
-				padding: 5px 10px;
+				font-size: 25px;
+				padding: 1px 20px;
 			}
 			@media (max-width:700px){
 				width: 300px;
 			}
 		}
 	}
-
+	.popupEdit{
+		z-index: 10;
+		position:absolute;
+		top:0;
+		width: 100%;
+		height: 100vh;
+		display: none;
+		justify-content: center;
+		align-items:center;
+		background-color:rgba(0,0,0,0.4);
+		.popup_distribution{
+			position:relative;
+			width: 600px;
+			display: flex;
+			flex-direction: column;
+			background-color:white;
+			padding-bottom:30px;
+			div{
+				display: flex;
+				justify-content: space-between;
+				h3{
+					padding:20px;
+					padding-bottom: 5px;
+					font-size: 35px;
+					color:$color1;
+				}
+				.close-popup{
+					margin-right: 10px;
+					color:$color3;
+					font-size: 30px;
+				}				
+			}
+			.error-vacio{
+				position:absolute;
+				top:118px;
+				left:30px;
+				color:$color3;
+				background-color:rgba(0,0,0,0.5);
+				border-radius:5px;
+				padding: 1px 3px;
+				display: none;
+				margin: auto;
+				.flecha-vacio{
+					color:rgba(0,0,0,0.5);
+					position:absolute;
+					font-size: 28px;
+					top:-23px;
+					left: 43%;
+				}
+			}
+			.inputs{
+				margin:25px;
+				padding:5px;
+				margin-top: 0;
+				border:none;
+				border-bottom:1px solid $color1;
+				resize: none;
+				font-size: 22px;
+				&:focus{
+					outline: none;
+					background-color: whitesmoke;
+				}
+			}
+			.btn_nuevatarea{
+				width: 50%;
+				margin:auto;
+				background-color:$color1;
+				color:$color2;
+				border:none;
+				font-size: 25px;
+				padding: 1px 20px;
+			}
+			@media (max-width:700px){
+				width: 300px;
+			}
+		}
+	}
 	.agregar_tarea{
 		color:$color1;
 		font-size: 60px;
@@ -191,11 +267,15 @@ body{
 					h4{
 						color:black;
 						margin-left:35px;
+						overflow-wrap: break-word;
+						max-width: 50%;
 					}
 				}
 				p{
 					margin-bottom: 0px;
 					margin-left: 35px;
+						overflow-wrap: break-word;
+						max-width: 70%
 				}
 				.listaOp{
 					position:absolute;

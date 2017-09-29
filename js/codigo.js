@@ -38,6 +38,7 @@ function checkCompletado(x){
 		document.getElementById(`id${elementosParseados[x].id}`).style.backgroundColor = "lightgrey"
 	}
 }
+
 //TRANFORMANDO DATOS EN STRING
 
 function setLS(nuevaTarea){
@@ -133,8 +134,10 @@ function removeOne(e){
 function agregarAELel(){
 	for (var i = 1; i < idNuevo; i++) {
 		var elC = document.getElementById(`el${i}`)
+		var edC = document.getElementById(`ed${i}`)
 		if(elC != null){
 			elC.addEventListener('click' , removeOne )
+			edC.addEventListener('click' , editEl)
 		}
 	}
 }
@@ -145,6 +148,19 @@ if(localStorage.getItem(0)==null){
 	localStorage.setItem(0,1)
 }
 
+//FUNCION DE EDICION
+document.getElementById('close-popupEdit').addEventListener('click', popupEditClose)
+document.getElementById('btn_nuevatareaEdit').addEventListener('click', generarTarea)
+
+function popupEditClose(){
+	document.getElementById('edicion').style.display="none"
+	document.getElementById('error-vacioEdit').style.display = "none"
+	
+}
+
+function editEl(){
+	document.getElementById('edicion').style.display ="flex"
+}
 //recolectar valores y crear objeto tarea(newTarea => en el creador de tarea en el DOM)
 
 var idNuevo = localStorage.getItem(0)
@@ -158,14 +174,14 @@ function setValue (){
 		<div>
 			<div>
 				<span class="ion-android-checkbox-outline-blank descompletado"></span>
-				<span class="ion-android-done completado"  id="c${idNuevo}"></span>
+				<span class="ion-android-done completado" id="c${idNuevo}"></span>
 			</div>
 			<h4 id="titulo${idNuevo}">${titulo}</h4>
 		</div>
 		<p class="p-tarea">${descripcion}</p>
 		<div class="listaOp">
 			<span class="ion-trash-a eliminarElemento" id="el${idNuevo}"></span>
-			<span class="ion-android-create editarElementos" id="editarElementos${idNuevo}"></span>
+			<span class="ion-android-create editarElementos" id="ed${idNuevo}"></span>
 		</div>
 	</div>`
 
