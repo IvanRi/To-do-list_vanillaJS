@@ -4,7 +4,7 @@ window.addEventListener('load' , getLS)
 var elementosParseados = []
 
 function getLS(){
-
+// debugger
 	removeAll()
 
 	elementosParseados = []
@@ -52,6 +52,8 @@ function setLSID(nuevaTarea){
 var element = []
 
 function keysElement(){
+// debugger
+	
 	element = []
 	for (var i = 1; i < localStorage.length; i++) {
 		element.push(localStorage.key(i))
@@ -62,7 +64,6 @@ function keysElement(){
 // PARSEAR DATOS DEL LOCAL STORAGE
 
 function getLSElements(){
-
 	elementosParseados = []
 
 	keysElement()
@@ -79,6 +80,7 @@ var main = document.getElementById('main')
 var sections = document.getElementsByTagName('section')
 
 function generarTarea (){
+
 	var newTarea = setValue()
 
 	if(newTarea.titulo == ""){

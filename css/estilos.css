@@ -1,7 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,700");
 body {
   position: relative;
-  font-family: "Roboto", sans-serif; }
+  font-family: "Roboto", sans-serif;
+  min-height: 100vh;
+  padding-bottom: 50px; }
   body nav {
     color: #F0F8EA;
     background-color: #E4572E; }
@@ -60,10 +62,10 @@ body {
         display: none; }
   body .popup {
     z-index: 10;
-    position: absolute;
+    position: fixed;
     top: 0;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     display: none;
     justify-content: center;
     align-items: center;
@@ -127,10 +129,10 @@ body {
           width: 300px; } }
   body .popupEdit {
     z-index: 10;
-    position: absolute;
+    position: fixed;
     top: 0;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     display: none;
     justify-content: center;
     align-items: center;
